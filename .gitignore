@@ -10,6 +10,13 @@ y.tab.h
 *.o
 *.out
 superAnandLang
-EOF
 
 *.code-workspace
+
+# Ignore extensionless Linux binaries
+*
+!*/
+!*.*
+!Makefile
+!LICENSE
+EOF
