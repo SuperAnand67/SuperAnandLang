@@ -11,3 +11,5 @@ y.tab.h
 *.out
 superAnandLang
 EOF
+
+*.code-workspace
