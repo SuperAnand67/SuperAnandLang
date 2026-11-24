@@ -1,3 +1,10 @@
+# Ignore extensionless Linux binaries first
+*
+!*/
+!*.*
+!Makefile
+!LICENSE
+
 # Flex & Bison generated files
 lex.yy.c
 *.tab.c
@@ -6,17 +13,9 @@ y.tab.c
 y.tab.h
 *.output
 
-# Compiled binaries & object files
+# Compiled binaries, object files & VSCodium workspace
 *.o
 *.out
-superAnandLang
-
 *.code-workspace
-
-# Ignore extensionless Linux binaries
-*
-!*/
-!*.*
-!Makefile
-!LICENSE
+superAnandLang
 EOF
