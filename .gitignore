@@ -1,4 +1,13 @@
-*.o
+# Flex & Bison generated files
 lex.yy.c
 *.tab.c
 *.tab.h
+y.tab.c
+y.tab.h
+*.output
+
+# Compiled binaries & object files
+*.o
+*.out
+superAnandLang
+EOF
