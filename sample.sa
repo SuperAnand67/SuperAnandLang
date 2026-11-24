@@ -1,0 +1,10 @@
+believe x = 10;
+believe y = 20;
+believe z = x + y; 
+
+whatis z; $ for printing the output $
+
+$this is a comment$
+
+giveme a; $ for input $
+whatis a;

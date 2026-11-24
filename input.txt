@@ -1,0 +1,5 @@
+whatis "Welcome to SuperAnandLang!";
+whatis 100;
+whatis 10 + 20 * 5;
+whatis (100 + 50) / 5;
+whatis "I am building my own programming language!";
