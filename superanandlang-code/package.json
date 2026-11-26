@@ -1,0 +1,37 @@
+{
+    "name": "superanandlang-code",
+    "displayName": "SuperAnandLang Language Support",
+    "description": "Syntax highlighting for the SuperAnandLang programming language",
+    "version": "0.0.1",
+    "publisher": "superanand",
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "superanandlang-code",
+                "aliases": [
+                    "superanandlang",
+                    "SuperAnandLang",
+                    "superanandlang-code",
+                    "SAL"
+                ],
+                "extensions": [
+                    ".sal"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "superanandlang-code",
+                "scopeName": "source.superanandlang-code",
+                "path": "./syntaxes/superanandlang-code.tmLanguage.json"
+            }
+        ]
+    }
+}
