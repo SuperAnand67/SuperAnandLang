@@ -36,3 +36,5 @@ whatis z;
 whatis "String " + "Concatination";
 
 whatis "My " + "New " + "Programming " + "Language !";
+
+gh++;

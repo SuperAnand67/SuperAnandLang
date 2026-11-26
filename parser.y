@@ -4,15 +4,15 @@
   #include <string.h>
   void yyerror(const char *s);
   int yylex(void);
-  void findOrError(char *s, int i);
-  void unaryOp(char *id, int k);
+  int findOrError(char *s, int i);
+  int unaryOp(char *id, int k);
 
   extern char *yytext;
   extern int yylineno;
   extern FILE *yyin;
 
-  extern char table[100][50];
-  extern int values[100];
+  extern char table[200][50];
+  extern int values[200];
   extern int n;
 
   extern int search(char key[]);
@@ -47,15 +47,15 @@ stmt:
   | WHATIS string  { printf("%s\n",$2); free($2); }
   | BELIEVE ID '=' expr { insert($2,$4); free($2); }
   | BELIEVE ID  { insert($2,0); free($2); }
-  | ID '=' expr { findOrError($1,$3); }
-  | ID INCREMENT  { unaryOp($1, 1); }
-  | ID DECREMENT { unaryOp($1, -1); }
+  | ID '=' expr { if(!findOrError($1,$3)) YYERROR; }
+  | ID INCREMENT  { if(!unaryOp($1, 1)) YYERROR; }
+  | ID DECREMENT { if(!unaryOp($1, -1)) YYERROR; }
   ;
 
 string:
   STRING '+' string {
-     $1 = realloc($1,strlen($1) + strlen($3) + 1); 
-     $$ = strcat($1, $3);
+     char *temp = realloc($1,strlen($1) + strlen($3) + 1); 
+     $$ = strcat(temp, $3);
      free($3);
   }
   | STRING  { $$ = $1; }
@@ -82,7 +82,9 @@ fact:
     if(i != -1)
       $$ = values[i];
     else{
-      yyerror("Undefined Variable !");
+      char error[200];
+      sprintf(error, "Undefined Variable '%s'",$1);
+      yyerror(error);
       free($1);
       YYERROR;
     }
@@ -97,29 +99,35 @@ void yyerror(const char *s){
   fprintf(stderr, "Error at line %d: %s\n", yylineno, s);
 }
 
-void findOrError(char *s, int i){
+int findOrError(char *s, int i){
   int index = search(s);
 
     if(index != -1)
       insert(s,i);
     else{
-      yyerror("Undefined Variable !");
+      char error[200];
+      sprintf(error, "Undefined Variable '%s'",s);
+      yyerror(error);
       //free(s);
-      //YYERROR;
+      return 0;
     }
     free(s);
+    return 1;
 }
 
-void unaryOp(char *id, int k){
+int unaryOp(char *id, int k){
   int i = search(id);
 
   if(i != -1)
     findOrError(id,values[i] + k);
   else{
-    yyerror("Undefined Variable !");
-    free(id);
+    char error[200];
+      sprintf(error, "Undefined Variable '%s'",id);
+      yyerror(error);
+      free(id);
+      return 0;
   }
-
+  return 1;
 }
 
 int main(int argc, char *argv[]){

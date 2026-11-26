@@ -6,8 +6,8 @@
     void yyerror(const char *s);
     char* parse_string(const char *str);
 
-    char table[100][50];
-    int values[100];
+    char table[200][50];
+    int values[200];
     int n = 0;
 
     int search(char key[]);
