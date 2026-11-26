@@ -1,16 +1,5 @@
-believe a = 10;
-believe b = 20;
-believe c = a + b * 2;
+believe x = 10;
+whatis x;
 
-whatis a;
-whatis b;
-whatis c;
-whatis (a + b) * 2;
-
-believe a = 100;
-whatis a;
-
-whatis "Hello\nWorld!";
-
-$ This is a comment $
-whatis 50 / 5;
+believe x = x + 10;
+whatis x;

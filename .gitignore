@@ -13,6 +13,8 @@ y.tab.c
 y.tab.h
 *.output
 
+sample.sal
+
 # Compiled binaries, object files & VSCodium workspace
 *.o
 *.out
