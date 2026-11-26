@@ -37,4 +37,3 @@ whatis "String " + "Concatination";
 
 whatis "My " + "New " + "Programming " + "Language !";
 
-gh++;
