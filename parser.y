@@ -46,6 +46,7 @@ stmt:
   WHATIS expr { printf("%d\n",$2); }
   | WHATIS string  { printf("%s\n",$2); free($2); }
   | BELIEVE ID '=' expr { insert($2,$4); free($2); }
+  | BELIEVE ID  { insert($2,0); free($2); }
   | ID '=' expr { findOrError($1,$3); }
   | ID INCREMENT  { unaryOp($1, 1); }
   | ID DECREMENT { unaryOp($1, -1); }

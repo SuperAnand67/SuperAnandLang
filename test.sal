@@ -20,7 +20,8 @@ whatis x; $ output should be -> x = 20; $
 believe y = (x * (x - 10)) + (x + x);
 whatis y;   $ output : 240 $
 
-believe z = x + y * 2;
+believe z;
+z = x + y * 2;
 whatis z; $ output : 500 $
 
 z++;
