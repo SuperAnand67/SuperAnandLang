@@ -27,6 +27,14 @@
       "match": "\\b[0-9]+\\b"
     },
     {
+      "name": "keyword.operator.increment.superanandlang-code",
+      "match": "\\+\\+"
+    },
+    {
+      "name": "keyword.operator.decrement.superanandlang-code",
+      "match": "--"
+    },
+    {
       "name": "keyword.operator.arithmetic.superanandlang-code",
       "match": "[+*/-]"
     },

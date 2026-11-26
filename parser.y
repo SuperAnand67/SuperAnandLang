@@ -52,7 +52,11 @@ stmt:
   ;
 
 string:
-  STRING '+' string { $$ = strcat($1, $3); }
+  STRING '+' string {
+     $1 = realloc($1,strlen($1) + strlen($3) + 1); 
+     $$ = strcat($1, $3);
+     free($3);
+  }
   | STRING  { $$ = $1; }
   ;
 
