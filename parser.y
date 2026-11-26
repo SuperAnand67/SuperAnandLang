@@ -1,8 +1,12 @@
 %{
   #include <stdio.h>
   #include <stdlib.h>
+  #include <string.h>
   void yyerror(const char *s);
   int yylex(void);
+  void findOrError(char *s, int i);
+  void unaryOp(char *id, int k);
+
   extern char *yytext;
   extern int yylineno;
   extern FILE *yyin;
@@ -22,9 +26,10 @@
 
 %token <num> NUMBER
 %token <str> STRING ID
-%token WHATIS BELIEVE COMMENT INVALID
+%token WHATIS BELIEVE INVALID INCREMENT DECREMENT
 
 %type <num> expr term fact
+%type <str> string
 
 %destructor { free($$); } <str>
 
@@ -39,21 +44,16 @@ prog:
 
 stmt:
   WHATIS expr { printf("%d\n",$2); }
-  | WHATIS STRING  { printf("%s\n",$2); free($2); }
+  | WHATIS string  { printf("%s\n",$2); free($2); }
   | BELIEVE ID '=' expr { insert($2,$4); free($2); }
-  | ID '=' expr {
-    int index = search($1);
+  | ID '=' expr { findOrError($1,$3); }
+  | ID INCREMENT  { unaryOp($1, 1); }
+  | ID DECREMENT { unaryOp($1, -1); }
+  ;
 
-    if(index != -1)
-      insert($1,$3);
-    else{
-      yyerror("Undefined Variable !");
-      free($1);
-      YYERROR;
-    }
-
-    free($1);
-  }
+string:
+  STRING '+' string { $$ = strcat($1, $3); }
+  | STRING  { $$ = $1; }
   ;
 
 expr:
@@ -90,6 +90,31 @@ fact:
 
 void yyerror(const char *s){
   fprintf(stderr, "Error at line %d: %s\n", yylineno, s);
+}
+
+void findOrError(char *s, int i){
+  int index = search(s);
+
+    if(index != -1)
+      insert(s,i);
+    else{
+      yyerror("Undefined Variable !");
+      //free(s);
+      //YYERROR;
+    }
+    free(s);
+}
+
+void unaryOp(char *id, int k){
+  int i = search(id);
+
+  if(i != -1)
+    findOrError(id,values[i] + k);
+  else{
+    yyerror("Undefined Variable !");
+    free(id);
+  }
+
 }
 
 int main(int argc, char *argv[]){

@@ -23,5 +23,15 @@ whatis y;   $ output : 240 $
 believe z = x + y * 2;
 whatis z; $ output : 500 $
 
-gg = 100;
-whatis gg;  $ Trigger an Error : Undefined Variable ! $
+z++;
+whatis z;
+
+z--;
+whatis z;
+
+z = 50;
+whatis z;
+
+whatis "String " + "Concatination";
+
+whatis "My " + "New " + "Programming " + "Language !";
