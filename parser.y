@@ -41,6 +41,19 @@ stmt:
   WHATIS expr { printf("%d\n",$2); }
   | WHATIS STRING  { printf("%s\n",$2); free($2); }
   | BELIEVE ID '=' expr { insert($2,$4); free($2); }
+  | ID '=' expr {
+    int index = search($1);
+
+    if(index != -1)
+      insert($1,$3);
+    else{
+      yyerror("Undefined Variable !");
+      free($1);
+      YYERROR;
+    }
+
+    free($1);
+  }
   ;
 
 expr:
@@ -64,7 +77,7 @@ fact:
     if(i != -1)
       $$ = values[i];
     else{
-      fprintf(stderr,"Undefined Variable : %s\n", $1);
+      yyerror("Undefined Variable !");
       free($1);
       YYERROR;
     }
