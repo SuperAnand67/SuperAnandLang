@@ -16,7 +16,7 @@ $(TARGET): parser.tab.c lex.yy.c
 	$(CC) parser.tab.c lex.yy.c -o $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET) test.sa
+	./$(TARGET) test.sal
 
 clean:
 	rm -f $(TARGET) parser.tab.c parser.tab.h lex.yy.c

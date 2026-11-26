@@ -11,4 +11,3 @@ whatis "12*34"; $ this prints the string inside "", not do the math in the insid
 
 believe x = 10;
 whatis x;
-
