@@ -5,14 +5,23 @@
     #include "parser.tab.h"
     void yyerror(const char *s);
     char* parse_string(const char *str);
+
+    char table[100][50];
+    int values[100];
+    int n = 0;
+
+    int search(char key[]);
+    void insert(char name[], int val);
 %}
 
 %option noyywrap
+%option yylineno
 
 %x COMMENT
 
 number [0-9]+
 string \"(\\.|[^\"\\])*\" 
+id [a-zA-Z][a-zA-Z0-9_]*
 
 %%
 
@@ -21,18 +30,21 @@ string \"(\\.|[^\"\\])*\"
 
 {number}   { yylval.num = atoi(yytext); return NUMBER; }
 {string}   { yylval.str = parse_string(yytext); return STRING; }
+{id}    { yylval.str = strdup(yytext); return ID; }
 
 [ \t\n]+  ;
 
-[+\-*/();]  { return *yytext; }
+[+\-*/();=]  { return *yytext; }
 
 "$" { BEGIN(COMMENT); }
 <COMMENT>"$"    { BEGIN(INITIAL); }
-<COMMENT>\n { yylineno++; }
+<COMMENT>\n ;
 <COMMENT>.  ;
 
-.   { yyerror("Invalid Syntax!");
-    return INVALID; }
+.   {   fprintf(stderr, "Invalid character: '%s' (ASCII: %d), line: %d\n",
+            yytext, (unsigned char)yytext[0], yylineno); 
+        yyerror("Invalid Syntax!");
+        return INVALID; }
 
 %%
 
@@ -67,4 +79,31 @@ char *parse_string(const char *str){
 
     str_out[j] = '\0';
     return str_out;
+}
+
+int search(char key[]){
+    for(int i = 0; i < n; i++){
+        if(strcmp(table[i],key) == 0)
+            return i;
+    }
+    return -1;
+}
+
+void insert(char name[], int val){
+
+    int index = search(name);
+
+    if(index != -1){
+        values[index] = val;
+        return;
+    }
+
+    if(n >= 100){
+        printf("Symbol table full!\n");
+        return;
+    }
+
+    strcpy(table[n], name);
+    values[n] = val;
+    n++;
 }

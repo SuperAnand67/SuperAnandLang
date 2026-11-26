@@ -9,8 +9,6 @@ whatis 293;
 
 whatis "12*34"; $ this prints the string inside "", not do the math in the inside expression $
 
-$ this is
-a multiline
-comment and you
-know what it is my Language BTW $
+believe x = 10;
+whatis x;
 

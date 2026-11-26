@@ -6,6 +6,13 @@
   extern char *yytext;
   extern int yylineno;
   extern FILE *yyin;
+
+  extern char table[100][50];
+  extern int values[100];
+  extern int n;
+
+  extern int search(char key[]);
+  extern void insert(char name[], int value);
 %}
 
 %union {
@@ -14,10 +21,12 @@
 }
 
 %token <num> NUMBER
-%token <str> STRING
-%token INVALID WHATIS BELIEVE COMMENT
+%token <str> STRING ID
+%token WHATIS BELIEVE COMMENT INVALID
 
 %type <num> expr term fact
+
+%destructor { free($$); } <str>
 
 %start prog
 
@@ -30,7 +39,8 @@ prog:
 
 stmt:
   WHATIS expr { printf("%d\n",$2); }
-  | WHATIS STRING  { printf("%s\n",$2); free($2); } 
+  | WHATIS STRING  { printf("%s\n",$2); free($2); }
+  | BELIEVE ID '=' expr { insert($2,$4); free($2); }
   ;
 
 expr:
@@ -48,15 +58,25 @@ term:
 fact:
   '(' expr ')'  { $$ = $2; }
   | NUMBER  { $$ = $1; }
+  | ID  {
+    int i = search($1);
+
+    if(i != -1)
+      $$ = values[i];
+    else{
+      fprintf(stderr,"Undefined Variable : %s\n", $1);
+      free($1);
+      YYERROR;
+    }
+
+    free($1);
+  }
   ;
 
 %%
 
 void yyerror(const char *s){
-  if (yytext[0] == '\0')
-    fprintf(stderr, "Syntax error at line %d near end of file (did you forget a ';'?): %s\n", yylineno, s);
-  else
-    fprintf(stderr, "Syntax error at line %d near '%s': %s\n", yylineno, yytext, s);
+  fprintf(stderr, "Error at line %d: %s\n", yylineno, s);
 }
 
 int main(int argc, char *argv[]){
@@ -69,7 +89,12 @@ int main(int argc, char *argv[]){
       perror("Could Not Open File !\n");
       return 1;
     }
-
   }
-  return yyparse();
+
+  int result = yyparse();
+
+  if(argc > 1)
+    fclose(yyin);
+  
+  return result;
 }
