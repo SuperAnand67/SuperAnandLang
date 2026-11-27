@@ -35,7 +35,6 @@
 
 %type <num> expr term fact
 %type <str> string
-%type <op> assign
 
 %destructor { free($$); } <str>
 
