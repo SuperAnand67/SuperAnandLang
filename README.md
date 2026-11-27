@@ -1,310 +1,269 @@
-# SuperAnandLang
+# SuperAnandLang 🚀
 
-A small experimental programming language built using **C, Flex, and Bison**.
+**SuperAnandLang** is an experimental programming language built from scratch using **C, Flex, and Bison**. The project explores the fundamentals of programming language design, including lexical analysis, parsing, symbol tables, expression evaluation, and language-specific syntax highlighting.
 
-SuperAnandLang is a learning-oriented compiler project designed to explore the fundamentals of programming language implementation, lexical analysis, parsing, grammar design, and expression evaluation.
-
-The project currently supports arithmetic expressions, string output, comments, and basic error handling.
+The goal is to understand how programming languages work internally by building one.
 
 ## ✨ Features
 
-- **Custom keywords:** Uses `whatis` as an output statement.
-- **Arithmetic operations:** Supports addition (`+`), subtraction (`-`), multiplication (`*`), and division (`/`).
-- **Operator precedence:** Multiplication and division are evaluated before addition and subtraction.
-- **Parentheses:** Supports grouped arithmetic expressions.
-- **String output:** Allows printing string literals.
-- **Escape sequences:** Supports `\n`, `\t`, `\"`, and `\\` in strings.
-- **Comments:** Supports single-line and multiline comments enclosed by `$`.
-- **Error handling:** Detects invalid characters and division by zero.
-- **Build automation:** Uses a Makefile to simplify compilation and execution.
+SuperAnandLang currently supports:
 
-## 🛠️ Technologies Used
+- **Output statements** using the `whatis` keyword.
+- **Integer variables** using the `believe` keyword.
+- **Variable assignment and reassignment.**
+- **Symbol table management** for storing and retrieving variable values.
+- **Arithmetic operations:** `+`, `-`, `*`, `/`.
+- **Operator precedence** and parentheses.
+- **String literals** and string concatenation using `+`.
+- **Increment and decrement operators:** `++` and `--`.
+- **Single-line comments** using `$ ... $`.
+- **Escape sequence handling** in strings.
+- **Syntax and runtime error handling**, including undefined-variable errors.
+
+## 🛠️ Technologies
 
 | Technology | Purpose |
 |---|---|
-| C | Implementation language |
+| C | Core implementation |
 | Flex | Lexical analysis |
 | Bison | Syntax analysis and parsing |
 | GCC | Compilation |
 | GNU Make | Build automation |
+| TextMate Grammar | VS Code syntax highlighting |
 
-## 📁 Project Structure
-
-```text
-SuperAnandLang/
-│
-├── Makefile          # Automates the build process
-├── README.md         # Project documentation
-├── lexical.l         # Flex lexer used by the parser
-├── parser.y          # Bison grammar and expression evaluation
-├── scanner.l         # Standalone lexical scanner experiment
-├── test.sa           # Test program
-├── sample.sa         # Experimental language syntax
-├── input.txt         # Additional sample input
-└── .gitignore        # Excludes generated build files
-```
-
-**Note:** `scanner.l` is a separate lexical scanner experiment. The current parser uses `lexical.l`.
-
-## ⚙️ Installation
+## 📦 Installation
 
 ### Prerequisites
 
-Make sure the following tools are installed:
-
-- GCC
-- Flex
-- Bison
-- GNU Make
-
-On Ubuntu, Debian, or Linux Mint:
+Install the required tools:
 
 ```bash
 sudo apt update
 sudo apt install gcc flex bison make
 ```
 
-## 🚀 Building the Project
-
-Clone the repository:
+### Clone the repository
 
 ```bash
 git clone https://github.com/SuperAnand67/SuperAnandLang.git
-```
-
-Navigate into the project directory:
-
-```bash
 cd SuperAnandLang
 ```
 
-Build the project:
+### Build
 
 ```bash
 make
 ```
 
-That's it! The executable `superanandlang` will be generated.
-
-### Manual Compilation
-
-The project can also be compiled without Make:
+### Execute a program
 
 ```bash
-bison -d parser.y
-flex lexical.l
-gcc parser.tab.c lex.yy.c -o superanandlang
+./superanandlang test.sal
 ```
 
-## 🔧 Makefile Commands
-
-The project includes a Makefile to automate compilation and execution.
-
-| Command | Description |
-|---|---|
-| `make` | Builds the executable |
-| `make all` | Performs the default build |
-| `make run` | Builds and executes `test.sa` |
-| `make clean` | Removes generated files and executable |
-
-### Examples
-
-Build the project:
-
-```bash
-make
-```
-
-Build and run the test program:
-
-```bash
-make run
-```
-
-Remove generated files:
-
-```bash
-make clean
-```
-
-Run a custom source file:
-
-```bash
-./superanandlang your_file.sa
-```
-
-Run interactively through standard input:
+You can also launch the interpreter without specifying a file to provide input interactively:
 
 ```bash
 ./superanandlang
 ```
 
-The Makefile also uses file dependencies to avoid unnecessary recompilation when the source files have not changed.
+## 💻 Language Syntax
 
-## 📝 Language Syntax
+### 1. Output
 
-SuperAnandLang currently uses a simple syntax.
+Use `whatis` to display values.
 
-### 1. Output a number
-
-```text
-whatis 293;
-```
-
-Output:
-
-```text
-293
-```
-
-### 2. Arithmetic expressions
-
-```text
-whatis 7 + 8;
-whatis 10 * 5;
-whatis (10 + 5) * 2;
-whatis 100 / 4;
-```
-
-Output:
-
-```text
-15
-50
-30
-25
-```
-
-### 3. String output
-
-```text
+```javascript
 whatis "HelloWorld!";
-whatis "SuperAnandLang";
+whatis 293;
+whatis 220 - 10 + 5;
 ```
 
-Output:
+### 2. Variables
 
-```text
-HelloWorld!
-SuperAnandLang
+Use `believe` to declare integer variables.
+
+```javascript
+believe x = 10;
+believe y = 20;
+
+whatis x;
+whatis y;
 ```
 
-### 4. Escape sequences
+Variables can also be reassigned:
 
-```text
-whatis "Hello\nWorld!";
-whatis "Hello\tWorld!";
+```javascript
+x = 50;
+whatis x;
 ```
 
-### 5. Comments
+### 3. Arithmetic Operations
 
-Comments are enclosed within `$` symbols.
-
-Single-line comment:
-
-```text
-$ This is a comment $
+```javascript
 whatis 10 + 20;
+whatis 50 - 10;
+whatis 5 * 6;
+whatis 100 / 5;
+
+whatis (10 + 5) * 2;
 ```
 
-Multiline comment:
+### 4. String Concatenation
 
-```text
-$
-This is a multiline comment.
-It can span multiple lines.
-$
+The `+` operator can concatenate string literals.
 
-whatis 100;
+```javascript
+whatis "Hello" + "World!";
+whatis "Super" + "Anand" + "Lang";
 ```
 
-## 🧠 How It Works
+### 5. Increment and Decrement
 
-SuperAnandLang follows a basic compiler front-end workflow:
+SuperAnandLang supports postfix increment and decrement operators.
+
+```javascript
+believe x = 10;
+
+x++;
+whatis x;
+
+x--;
+whatis x;
+```
+
+### 6. Comments
+
+Use `$` to write comments.
+
+```javascript
+$ This is a comment $
+
+whatis "Hello World!";
+```
+
+### 7. Combined Example
+
+```javascript
+$ Welcome to SuperAnandLang $
+
+believe x = 10;
+believe y = 20;
+
+believe result = x + y;
+
+whatis "Calculation Result:";
+whatis result;
+
+x++;
+whatis x;
+
+whatis "Super" + "Anand" + "Lang";
+```
+
+## 🧩 VS Code Syntax Highlighting Extension
+
+SuperAnandLang also includes its own **Visual Studio Code language support extension**, making `.sal` programs easier to read and write.
+
+The extension is developed using VS Code's TextMate grammar and language configuration.
+
+### Features
+
+- Syntax highlighting for SuperAnandLang source files.
+- Recognition of language keywords such as `whatis` and `believe`.
+- Highlighting for strings, numeric literals, operators, and comments.
+- Language configuration for the `.sal` file extension.
+- A dedicated language definition for SuperAnandLang.
+
+### Extension Structure
 
 ```text
-       Source Code (.sa)
+superanandlang-code/
+├── package.json
+├── language-configuration.json
+└── syntaxes/
+    └── superanandlang-code.tmLanguage.json
+```
+
+### Install the Extension
+
+The repository includes a packaged VS Code extension:
+
+```text
+superanandlang-code-0.0.1.vsix
+```
+
+Install it through the VS Code command line:
+
+```bash
+code --install-extension superanandlang-code-0.0.1.vsix
+```
+
+Alternatively:
+
+1. Open Visual Studio Code.
+2. Navigate to the Extensions panel.
+3. Select the three-dot menu.
+4. Choose **Install from VSIX...**.
+5. Select the packaged `.vsix` file.
+
+After installation, open a `.sal` file to use SuperAnandLang syntax highlighting.
+
+## ⚙️ How It Works
+
+SuperAnandLang uses a traditional compiler-style front end to process source code.
+
+```text
+       Source Code (.sal)
                |
                v
        Lexical Analysis
-            (Flex)
+             (Flex)
                |
                v
-          Tokens
+             Tokens
                |
                v
-        Syntax Analysis
+       Syntax Analysis
             (Bison)
                |
                v
-      Expression Evaluation
+       Semantic Processing
                |
                v
-          Output
+       Symbol Table Management
+               |
+               v
+       Expression Evaluation
+               |
+               v
+            Output
 ```
 
-### Lexical Analysis
+## 🚧 Current Limitations
 
-The Flex lexer (`lexical.l`) reads the source code and identifies tokens such as:
+SuperAnandLang is still under development.
 
-- Keywords
-- Numbers
-- Strings
-- Arithmetic operators
-- Parentheses
-- Semicolons
+Some features that are not currently implemented include:
 
-### Syntax Analysis
-
-The Bison parser (`parser.y`) checks whether the token sequence follows the language grammar.
-
-It also evaluates supported arithmetic expressions and handles output statements.
-
-### Execution
-
-The current implementation directly evaluates supported expressions and prints their results. It is not yet a complete compiler that generates machine code or an intermediate representation.
-
-## ⚠️ Current Limitations
-
-SuperAnandLang is an experimental project, and several language features are still under development.
-
-Currently, the parser does not implement:
-
-- Variable declarations and assignments.
-- User input.
+- String variables.
 - Conditional statements.
 - Loops.
-- Functions.
-- Comparison and logical operators.
-- Intermediate code generation.
-
-Some experimental syntax may appear in `sample.sa`, but it should not be considered implemented functionality.
+- User-defined functions.
+- Arrays.
+- Static type checking.
+- Intermediate representation and machine-code generation.
 
 ## 🔮 Future Improvements
 
-Potential additions include:
+Potential future additions include:
 
-- Variable declaration and assignment.
-- User input using a custom keyword.
-- Conditional statements (`if`, `else`).
-- Looping constructs.
-- Comparison and logical operators.
-- Symbol table implementation.
-- Improved syntax and semantic error reporting.
-- Intermediate code generation.
-- More advanced data types.
-
-## 🎯 Learning Objectives
-
-This project explores practical concepts in:
-
-- Compiler construction.
-- Lexical analysis and tokenization.
-- Context-free grammars.
-- Parsing and syntax validation.
-- Operator precedence and associativity.
-- Expression evaluation.
-- Build automation using GNU Make.
+- Conditional statements and loops.
+- Support for additional data types.
+- User-defined functions.
+- More advanced expression handling.
+- Improved error reporting.
+- Expanded VS Code language support.
 
 ## 👨‍💻 Author
 
@@ -312,8 +271,9 @@ This project explores practical concepts in:
 
 Computer Science and Engineering Student
 
-GitHub: [@SuperAnand67](https://github.com/SuperAnand67)
+- GitHub: [SuperAnand67](https://github.com/SuperAnand67)
+- Project: [SuperAnandLang](https://github.com/SuperAnand67/SuperAnandLang)
 
 ---
 
-*SuperAnandLang — Exploring the foundations of programming languages, one token at a time.*
+*SuperAnandLang — Building a programming language, one token at a time.*
