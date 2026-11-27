@@ -4,6 +4,7 @@
     "description": "Syntax highlighting for the SuperAnandLang programming language",
     "version": "0.0.1",
     "publisher": "superanand",
+	"license": "SEE LICENSE IN LICENSE",
     "engines": {
         "vscode": "^1.105.0"
     },
