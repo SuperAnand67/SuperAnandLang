@@ -8,7 +8,7 @@
 
 ---
 
-### **SuperAnandLang** is an experimental programming language built from scratch using **C, Flex, and Bison**. The project explores programming language design through lexical analysis, parsing, symbol tables, expression evaluation, and custom editor support.
+ **SuperAnandLang** is an experimental programming language built from scratch using **C, Flex, and Bison**. The project explores programming language design through lexical analysis, parsing, symbol tables, expression evaluation, and custom editor support.
 
 ## ✨ Features
 
