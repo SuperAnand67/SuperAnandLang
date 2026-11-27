@@ -4,8 +4,8 @@
   "patterns": [
     {
       "name": "comment.line.double-dollar.superanandlang-code",
-      "begin": "\\$",
-      "end": "\\$"
+      "begin": "\\$\\$",
+      "end": "$"
     },
     {
       "name": "comment.block.dollar.superanandlang-code",

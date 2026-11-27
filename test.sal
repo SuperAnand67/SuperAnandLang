@@ -2,14 +2,15 @@ $ Welcome to SuperAnandLang $
 
 whatis "HelloWorld!";
 
-$ this is a single line comment $
+$$ this is a single line comment
 whatis 293;
 
 whatis 220 - 10 + 100;
 
 whatis (20 + 10) * 2;
 
-whatis "12*34"; $ this prints the string inside "", not do the math in the inside expression $
+whatis "12*34"; $ this prints the string inside "", 
+                    not do the math in the inside expression $
 
 believe x = 10;
 whatis x;
@@ -18,11 +19,11 @@ x = x + 10;
 whatis x; $ output should be -> x = 20; $
 
 believe y = (x * (x - 10)) + (x + x);
-whatis y;   $ output : 240 $
+whatis y;   $$ output : 240
 
 believe z;
 z = x + y * 2;
-whatis z; $ output : 500 $
+whatis z; $$ output : 500 
 
 z++;
 whatis z;
@@ -49,4 +50,6 @@ whatis "x = " + x;   $ Output : 200 $
 x /= 10;
 whatis "x = " + x;   $ Output : 20 $
 
-$$ whatis "x + 10 : " + x + " <- Here you Go !";
+$ this is a 
+multiline comment
+$
