@@ -48,6 +48,7 @@ id  [a-zA-Z][a-zA-Z0-9_]*
 <COMMENT>"$"    { BEGIN(INITIAL); }
 <COMMENT>\n ;
 <COMMENT>.  ;
+<COMMENT><<EOF>>    { yyerror("Unclosed Comment !"); return INVALID; }
 
 .   {   fprintf(stderr, "Invalid character: '%s' (ASCII: %d), line: %d\n",
             yytext, (unsigned char)yytext[0], yylineno); 

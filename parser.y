@@ -198,7 +198,7 @@ int uassign(char *id, char op, int val){
       if(val != 0)
         insert(id, values[i] / val);
       else{
-        yyerror("Division by Zero !");
+        yyerror("Division by Zero Error !");
         free(id);
         return 0;
       }
