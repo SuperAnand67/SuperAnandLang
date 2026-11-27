@@ -15,6 +15,12 @@ whatis "12*34"; $ this prints the string inside "",
 believe x = 10;
 whatis x;
 
+$ 
+    this paragraph is a 
+    multiline 
+    comment
+$
+
 x = x + 10;
 whatis x; $ output should be -> x = 20; $
 
@@ -49,7 +55,3 @@ x *= 10;
 whatis "x = " + x;   $ Output : 200 $
 x /= 10;
 whatis "x = " + x;   $ Output : 20 $
-
-$ this is a 
-multiline comment
-$
