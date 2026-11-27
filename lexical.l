@@ -3,12 +3,9 @@
     #include <stdlib.h>
     #include <string.h>
     #include "parser.tab.h"
+    #include "symbol.h"
     void yyerror(const char *s);
     char* parse_string(const char *str);
-
-    char table[200][50];
-    int values[200];
-    int n = 0;
 
     int search(char key[]);
     void insert(char name[], int val);
@@ -92,7 +89,7 @@ char *parse_string(const char *str){
 
 int search(char key[]){
     for(int i = 0; i < n; i++){
-        if(strcmp(table[i],key) == 0)
+        if(strcmp(table[i].id,key) == 0)
             return i;
     }
     return -1;
@@ -103,7 +100,7 @@ void insert(char name[], int val){
     int index = search(name);
 
     if(index != -1){
-        values[index] = val;
+        table[index].value = val;
         return;
     }
 
@@ -112,7 +109,7 @@ void insert(char name[], int val){
         return;
     }
 
-    strcpy(table[n], name);
-    values[n] = val;
+    strcpy(table[n].id, name);
+    table[n].value = val;
     n++;
 }

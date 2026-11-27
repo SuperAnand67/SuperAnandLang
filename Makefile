@@ -16,8 +16,8 @@ parser.tab.c parser.tab.h: parser.y
 lex.yy.c: lexical.l parser.tab.h
 	$(FLEX) lexical.l
 
-$(TARGET): parser.tab.c lex.yy.c
-	$(CC) parser.tab.c lex.yy.c -o $(TARGET)
+$(TARGET): parser.tab.c lex.yy.c symbol.c
+	$(CC) parser.tab.c lex.yy.c symbol.c -o $(TARGET)
 	echo "Build Successfully !"
 
 run: $(TARGET)

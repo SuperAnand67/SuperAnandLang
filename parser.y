@@ -2,6 +2,7 @@
   #include <stdio.h>
   #include <stdlib.h>
   #include <string.h>
+  #include "symbol.h"
   void yyerror(const char *s);
   int yylex(void);
   int findOrError(char *s, int i);
@@ -12,10 +13,6 @@
   extern char *yytext;
   extern int yylineno;
   extern FILE *yyin;
-
-  extern char table[200][50];
-  extern int values[200];
-  extern int n;
 
   extern int search(char key[]);
   extern void insert(char name[], int value);
@@ -105,7 +102,7 @@ fact:
     int i = search($1);
 
     if(i != -1)
-      $$ = values[i];
+      $$ = table[i].value;
     else{
       char error[200];
       sprintf(error, "Undefined Variable '%s'",$1);
@@ -144,7 +141,7 @@ int unaryOp(char *id, int k){
   int i = search(id);
 
   if(i != -1)
-    findOrError(id,values[i] + k);
+    findOrError(id,table[i].value + k);
   else{
     char error[200];
       sprintf(error, "Undefined Variable '%s'",id);
@@ -186,17 +183,17 @@ int uassign(char *id, char op, int val){
 
   switch(op){
     case '+':
-      insert(id, values[i] + val);
+      insert(id, table[i].value + val);
       break;
     case '-':
-      insert(id, values[i] - val);
+      insert(id, table[i].value - val);
       break;
     case '*':
-      insert(id, values[i] * val);
+      insert(id, table[i].value * val);
       break;
     case '/':
       if(val != 0)
-        insert(id, values[i] / val);
+        insert(id, table[i].value / val);
       else{
         yyerror("Division by Zero Error !");
         free(id);
