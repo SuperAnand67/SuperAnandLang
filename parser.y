@@ -73,9 +73,9 @@ unary:
 
 string:
   STRING '+' string {
-     char *temp = realloc($1,strlen($1) + strlen($3) + 1); 
-     $$ = strcat(temp, $3);
-     free($3);
+    char *temp = realloc($1,strlen($1) + strlen($3) + 1); 
+    $$ = strcat(temp, $3);
+    free($3);
   }
   | STRING '+' expr {
       char str[20];

@@ -48,3 +48,5 @@ x *= 10;
 whatis "x = " + x;   $ Output : 200 $
 x /= 10;
 whatis "x = " + x;   $ Output : 20 $
+
+$$ whatis "x + 10 : " + x + " <- Here you Go !";

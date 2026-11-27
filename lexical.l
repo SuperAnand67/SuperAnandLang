@@ -41,6 +41,8 @@ id [a-zA-Z][a-zA-Z0-9_]*
 
 [+\-*/();=]  { return *yytext; }
 
+"$$".*  ;
+
 "$" { BEGIN(COMMENT); }
 <COMMENT>"$"    { BEGIN(INITIAL); }
 <COMMENT>\n ;
