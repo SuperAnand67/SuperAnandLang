@@ -259,3 +259,5 @@ Computer Science and Engineering Student
 ---
 
 *SuperAnandLang — Building a programming language, one token at a time.*
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
