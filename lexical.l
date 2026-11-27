@@ -19,15 +19,15 @@
 
 %x COMMENT
 
-number [0-9]+
-string \"(\\.|[^\"\\])*\" 
-id [a-zA-Z][a-zA-Z0-9_]*
+number  [0-9]+
+string  \"(\\.|[^\"\\])*\" 
+id  [a-zA-Z][a-zA-Z0-9_]*
 
 %%
 
 "whatis"  { return WHATIS; }
 "believe"   { return BELIEVE; }
-"exit()"  { printf("Thanks for Using SuperAnandLang !"); exit(0); }
+"exit"  { return EXIT; }
 
 {number}   { yylval.num = atoi(yytext); return NUMBER; }
 {string}   { yylval.str = parse_string(yytext); return STRING; }

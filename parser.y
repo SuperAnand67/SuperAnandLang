@@ -29,8 +29,8 @@
 
 %token <num> NUMBER
 %token <str> STRING ID
-%token WHATIS BELIEVE INVALID
-%token INCREMENT DECREMENT 
+%token WHATIS BELIEVE EXIT INVALID
+%token INCREMENT DECREMENT
 %token <op> UASSIGN
 
 %type <num> expr term fact
@@ -46,6 +46,7 @@
 prog:
   stmt ';'
   | prog stmt ';'
+  | EXIT'('')'  { printf("Thanks for using SuperAnandLang !"); exit(0); }
   ;
 
 stmt:
