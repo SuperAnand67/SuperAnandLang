@@ -7,13 +7,18 @@
 - Output statements using `whatis`.
 - Integer variable declarations using `believe`.
 - Variable assignment and reassignment.
+- Variable declarations without an initial value.
 - Two-dimensional symbol table for variable storage and lookup.
 - Arithmetic operators: `+`, `-`, `*`, `/`.
+- Compound assignment operators: `+=`, `-=`, `*=`, `/=`.
 - Operator precedence and parentheses.
 - String literals and concatenation using `+`.
+- String concatenation with numeric expressions.
 - Postfix increment and decrement: `++`, `--`.
-- Comments using `$ ... $`.
+- Single-line comments using `$$`.
+- Multiline comments using `$ ... $`.
 - String escape sequence handling.
+- `exit()` command for leaving the interpreter.
 - Syntax and runtime error handling, including undefined-variable errors.
 
 ## 🛠️ Technologies
@@ -85,6 +90,13 @@ whatis x;
 whatis y;
 ```
 
+Variables can also be declared without an initial value:
+
+```superanandlang
+believe z;
+whatis z;
+```
+
 Variables can be reassigned:
 
 ```superanandlang
@@ -112,6 +124,15 @@ whatis "Hello" + "World!";
 whatis "Super" + "Anand" + "Lang";
 ```
 
+Strings can also be concatenated with numeric expressions.
+
+```superanandlang
+believe x = 20;
+
+whatis "The value of x is: " + x;
+whatis "Result: " + (10 + 20);
+```
+
 ### 5. Increment and Decrement
 
 SuperAnandLang supports postfix increment and decrement operators.
@@ -128,10 +149,16 @@ whatis x;
 
 ### 6. Comments
 
-Use `$` to write comments.
+Use `$ ... $` for multiline comments.
+
+Use `$$` for single-line comments.
 
 ```superanandlang
-$ This is a comment $
+$ This is a
+  multiline comment
+$
+
+$$ This is a single-line comment
 
 whatis "Hello World!";
 ```
@@ -155,6 +182,34 @@ whatis x;
 whatis "Super" + "Anand" + "Lang";
 ```
 
+### 8. Compound Assignment
+
+SuperAnandLang supports compound assignment operators.
+
+```superanandlang
+believe x = 10;
+
+x += 10;
+whatis x;
+
+x -= 5;
+whatis x;
+
+x *= 2;
+whatis x;
+
+x /= 3;
+whatis x;
+```
+
+### 9. Exit Command
+
+Use `exit()` to leave the interactive interpreter.
+
+```superanandlang
+exit()
+```
+
 ## 🧩 VS Code Syntax Highlighting Extension
 
 SuperAnandLang includes its own **Visual Studio Code language support extension**, allowing `.sal` source files to have dedicated syntax highlighting.
@@ -168,6 +223,7 @@ The extension uses TextMate grammar and VS Code language configuration.
 - Highlighting for strings, numeric literals, operators, and comments.
 - Language configuration for `.sal` files.
 - Dedicated language definition for SuperAnandLang.
+- Bracket matching and automatic closing pairs.
 
 ### Extension Structure
 
@@ -181,14 +237,12 @@ superanandlang-code/
 
 ### Install the Extension
 
-The repository includes a packaged VS Code extension:
+The extension version is currently defined as `0.0.2` in `package.json`.
 
-`superanandlang-code-0.0.1.vsix`
-
-Install it using:
+Install the packaged VS Code extension from the repository:
 
 ```bash
-code --install-extension superanandlang-code-0.0.1.vsix
+code --install-extension ./superanandlang-code-0.0.2.vsix
 ```
 
 Alternatively, open VS Code, navigate to Extensions, select **Install from VSIX...**, and choose the packaged extension.
@@ -237,6 +291,7 @@ Currently unimplemented features include:
 - Arrays.
 - Static type checking.
 - Intermediate representation and machine-code generation.
+- More flexible mixed string and expression concatenation.
 
 ## 🔮 Future Improvements
 
