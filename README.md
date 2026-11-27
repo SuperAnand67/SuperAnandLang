@@ -1,76 +1,71 @@
 
-# SuperAnandLang
+# 🚀 SuperAnandLang
 
-A small experimental programming language built using **C, Flex, and Bison**.
+### A tiny programming language with a big ambition.
 
-SuperAnandLang is a personal language-design project focused on understanding how programming languages work internally — from lexical analysis and grammar design to parsing, semantic actions, and execution.
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-C-blue?style=for-the-badge&logo=c" alt="C">
+  <img src="https://img.shields.io/badge/Lexer-Flex-orange?style=for-the-badge" alt="Flex">
+  <img src="https://img.shields.io/badge/Parser-Bison-red?style=for-the-badge" alt="Bison">
+  <img src="https://img.shields.io/badge/Status-Experimental-yellow?style=for-the-badge" alt="Experimental">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+</p>
 
-The project is being developed incrementally, with an emphasis on learning compiler construction through practical implementation rather than simply studying its theory.
-
----
-
-## Features
-
-### Language Syntax
-- `.sal` source file extension.
-- `whatis` statement for displaying output.
-- `believe` keyword for integer variable declarations.
-- `exit()` statement for terminating execution.
-- Single-line comments using `$$`.
-- Multiline comments using `$ ... $`.
-
-### Variables and Operations
-- Integer variable declarations.
-- Variable assignment and reassignment.
-- Symbol table for storing and retrieving variables.
-- Arithmetic operations:
-  - Addition (`+`)
-  - Subtraction (`-`)
-  - Multiplication (`*`)
-  - Division (`/`)
-- Parentheses and arithmetic precedence.
-- Compound assignment operators:
-  - `+=`
-  - `-=`
-  - `*=`
-  - `/=`
-- Postfix increment (`++`) and decrement (`--`).
-
-### Strings
-- String literals using double quotes.
-- String concatenation.
-- Concatenation of strings with integer expressions (currently limited).
-- Escape sequences:
-  - `\n` — Newline
-  - `\t` — Tab
-  - `\"` — Double quote
-  - `\\` — Backslash
-
-### Error Handling
-- Undefined variable detection.
-- Duplicate declaration detection.
-- Division-by-zero handling.
-- Invalid character detection.
-- Syntax error reporting.
+<p align="center">
+  <b>SuperAnandLang</b> is an experimental programming language built from scratch using C, Flex, and Bison.
+  <br>
+  Designed as a hands-on exploration of lexical analysis, grammar design, parsing, and language implementation.
+</p>
 
 ---
 
-## Example Program
+## 🌟 What is SuperAnandLang?
+
+SuperAnandLang is a personal programming language project created to explore what happens behind the scenes when a programming language is interpreted.
+
+Instead of relying on an existing language framework, this project builds its own:
+
+- 🔍 Lexer to recognize tokens.
+- 🌳 Parser to validate syntax.
+- ⚙️ Semantic actions to evaluate operations.
+- 📚 Symbol table to manage variables.
+- 🧠 Grammar rules to define the language.
+
+The goal isn't just to make another programming language. It's to understand how one actually works.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🖨️ Output | `whatis` statement |
+| 📦 Variables | Integer declarations using `believe` |
+| ➕ Arithmetic | Addition, subtraction, multiplication, division |
+| 🧮 Precedence | Parentheses and arithmetic precedence |
+| 🔄 Assignment | Normal and compound assignments |
+| ⬆️ Increment | Postfix `++` and `--` |
+| 🔤 Strings | String literals and concatenation |
+| 💬 Comments | Single-line and multiline comments |
+| 🚪 Exit | `exit()` statement |
+| 🛡️ Errors | Basic syntax and runtime error handling |
+
+### 📝 A Little Look at the Syntax
 
 ```sal
 $$ Variable declarations
 believe age = 19;
 believe score = 100;
 
-$$ Arithmetic operations
+$$ Arithmetic
 believe result = (score + 50) * 2;
 
-$$ Compound assignments
+$$ Compound assignment
 score += 25;
 age++;
 
 $$ Output
-whatis "SuperAnandLang";
+whatis "Welcome to SuperAnandLang!";
 whatis "Age: " + age;
 whatis "Score: " + score;
 whatis "Result: " + result;
@@ -80,84 +75,81 @@ exit();
 
 ---
 
-## Technologies Used
+## 🏗️ How It Works
 
-| Technology | Purpose |
-|---|---|
-| C | Implementation and semantic actions |
-| Flex | Lexical analysis |
-| Bison | Grammar definition and parsing |
-| Make | Build automation |
-| TextMate Grammar | VS Code syntax highlighting |
+SuperAnandLang uses Flex for lexical analysis and Bison for syntax analysis.
 
----
-
-## Project Architecture
-
-```text
-         Source Code (.sal)
-                 |
-                 v
-          Lexical Analysis
-               (Flex)
-                 |
-                 v
-             Tokens
-                 |
-                 v
-          Syntax Analysis
-              (Bison)
-                 |
-                 v
-          Semantic Actions
-                 |
-                 v
-          Symbol Table
-                 |
-                 v
-             Execution
+```mermaid
+flowchart TD
+    A["📄 Source Code (.sal)"] --> B["🔍 Lexer (Flex)"]
+    B --> C["🎫 Tokens"]
+    C --> D["🌳 Parser (Bison)"]
+    D --> E["⚙️ Semantic Actions"]
+    E --> F["📚 Symbol Table"]
+    F --> G["🖥️ Execution"]
 ```
 
-The lexer identifies tokens, the parser validates the grammar, and semantic actions perform operations and manage program execution.
+### 🔍 The Components
+
+| Component | Responsibility |
+|---|---|
+| `lexical.l` | Recognizes keywords, identifiers, operators, and literals |
+| `parser.y` | Defines grammar and parsing rules |
+| Symbol Table | Stores variable names and values |
+| Semantic Actions | Performs calculations and executes statements |
+| `Makefile` | Automates compilation and execution |
 
 ---
 
-## Installation and Usage
+## 🛠️ Built With
 
-### Requirements
+<p>
+  <img src="https://skillicons.dev/icons?i=c,vscode,git,github,linux" alt="Technologies">
+</p>
+
+- **C** — Core implementation.
+- **Flex** — Lexical analyzer generation.
+- **Bison** — Parser generation.
+- **Make** — Build automation.
+- **TextMate Grammar** — Syntax highlighting for VS Code.
+
+---
+
+## ⚡ Getting Started
+
+### 📋 Requirements
 
 - GCC
 - Flex
 - Bison
 - Make
 
-### Clone the Repository
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/SuperAnand67/SuperAnandLang.git
-
 cd SuperAnandLang
 ```
 
-### Build
+### 2️⃣ Build the Project
 
 ```bash
 make
 ```
 
-### Run
+### 3️⃣ Run the Language
 
 ```bash
 make run
 ```
 
-### Run a Specific File
+### 4️⃣ Run a Specific File
 
 ```bash
 make run TEST_FILE=example.sal
 ```
 
-### Clean Generated Files
+### 🧹 Clean Generated Files
 
 ```bash
 make clean
@@ -165,96 +157,111 @@ make clean
 
 ---
 
-## VS Code Support
+## 🎨 VS Code Support
 
-SuperAnandLang includes a VS Code language extension for `.sal` files.
+SuperAnandLang includes a custom VS Code language extension for `.sal` files.
 
-Current editor support includes:
-- Syntax highlighting.
-- Language configuration.
-- Comment support.
-- Bracket configuration.
+Current editor features:
 
-The extension can be packaged as a VSIX file and installed through VS Code's **Install from VSIX** option.
+- 🎨 Syntax highlighting.
+- 💬 Comment configuration.
+- 🔗 Bracket configuration.
+- 📦 VSIX packaging support.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 SuperAnandLang/
-|
-|-- lexical.l
-|-- parser.y
-|-- Makefile
-|-- test.sal
-|-- README.md
-|-- LICENSE
-|
-|-- vscode-extension/
-    |-- package.json
-    |-- syntaxes/
-    |-- language-configuration.json
+│
+├── lexical.l
+├── parser.y
+├── Makefile
+├── test.sal
+├── README.md
+├── LICENSE
+│
+└── vscode-extension/
+    ├── package.json
+    ├── syntaxes/
+    └── language-configuration.json
 ```
-
-*The exact directory structure may evolve as the project develops.*
 
 ---
 
-## Current Limitations
+## 🚧 Current Limitations
 
-SuperAnandLang is still an experimental language implementation.
+This project is still under active development.
 
 Some features that are not yet implemented or fully developed:
 
-- String variables.
-- General mixed string and arithmetic concatenation.
-- Conditional statements.
-- Loops.
-- Functions.
-- Arrays and data structures.
-- Floating-point and Boolean types.
-- Abstract Syntax Tree (AST).
-- Intermediate Representation (IR).
-- Native machine-code generation.
+- 🔤 String variables.
+- 🔀 General mixed string and arithmetic concatenation.
+- 🤔 Conditional statements.
+- 🔁 Loops.
+- 🧩 Functions.
+- 📦 Arrays and data structures.
+- 🔢 Floating-point and Boolean types.
+- 🌳 Abstract Syntax Tree (AST).
+- ⚙️ Intermediate Representation (IR).
+- 💻 Native machine-code generation.
 
 ---
 
-## Learning Objectives
+## 🗺️ Roadmap
 
-This project is an opportunity to explore:
-
-- How lexical analyzers recognize programming language tokens.
-- How context-free grammars describe language syntax.
-- How Bison handles recursive grammar rules and parsing decisions.
-- How semantic actions evaluate expressions.
-- How symbol tables manage identifiers and values.
-- How memory allocation and ownership work in C.
-- How language syntax evolves as new features are introduced.
-
----
-
-## Future Improvements
-
-- Improve grammar design and reduce parsing ambiguity.
-- Implement safer memory management.
-- Expand string operations and concatenation.
-- Introduce an Abstract Syntax Tree.
-- Separate parsing from execution.
-- Improve error reporting and recovery.
-- Add automated test cases.
-- Explore intermediate representation and code generation.
+- [x] Build a lexer using Flex.
+- [x] Build a parser using Bison.
+- [x] Implement integer variables.
+- [x] Implement arithmetic expressions.
+- [x] Implement a symbol table.
+- [x] Implement compound assignment operators.
+- [x] Implement increment and decrement.
+- [x] Implement string literals.
+- [x] Add basic string concatenation.
+- [x] Add a custom VS Code syntax-highlighting extension.
+- [ ] Improve mixed string and arithmetic concatenation.
+- [ ] Strengthen memory management.
+- [ ] Add comprehensive automated tests.
+- [ ] Implement an Abstract Syntax Tree.
+- [ ] Separate parsing and execution.
+- [ ] Explore intermediate representation and code generation.
 
 ---
 
-## Author
+## 🎯 Learning Goals
+
+This project explores several fundamental computer science concepts:
+
+- Compiler construction.
+- Context-free grammars.
+- Recursive grammar rules.
+- Parsing and ambiguity.
+- Lexical analysis.
+- Semantic analysis.
+- Symbol tables.
+- Dynamic memory management in C.
+- Language design and syntax engineering.
+
+---
+
+## 👨‍💻 Author
 
 **SuperAnand67**
 
-GitHub: https://github.com/SuperAnand67
+🔗 GitHub: [SuperAnand67](https://github.com/SuperAnand67)
 
 ---
 
-## License
+## 📜 License
 
-This project is licensed under the MIT License.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+---
+
+<p align="center">
+  ⭐ If you find this project interesting, consider giving it a star!
+  <br><br>
+  <b>Built from curiosity, one grammar rule at a time. 🚀</b>
+</p>
