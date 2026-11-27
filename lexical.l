@@ -6,9 +6,7 @@
     #include "symbol.h"
     void yyerror(const char *s);
     char* parse_string(const char *str);
-
-    int search(char key[]);
-    void insert(char name[], int val);
+    
 %}
 
 %option noyywrap
@@ -85,31 +83,4 @@ char *parse_string(const char *str){
 
     str_out[j] = '\0';
     return str_out;
-}
-
-int search(char key[]){
-    for(int i = 0; i < n; i++){
-        if(strcmp(table[i].id,key) == 0)
-            return i;
-    }
-    return -1;
-}
-
-void insert(char name[], int val){
-
-    int index = search(name);
-
-    if(index != -1){
-        table[index].value = val;
-        return;
-    }
-
-    if(n >= 100){
-        printf("Symbol table full!\n");
-        return;
-    }
-
-    strcpy(table[n].id, name);
-    table[n].value = val;
-    n++;
 }

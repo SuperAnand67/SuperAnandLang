@@ -14,8 +14,6 @@
   extern int yylineno;
   extern FILE *yyin;
 
-  extern int search(char key[]);
-  extern void insert(char name[], int value);
 %}
 
 %union {

@@ -10,4 +10,7 @@ typedef struct{
 extern Symbol table[200];
 extern int n;
 
+int search(char *id);
+void insert(char *id, int val);
+
 #endif
