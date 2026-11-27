@@ -1,339 +1,260 @@
-SuperAnandLang 🚀
 
-SuperAnandLang is an experimental programming language built from scratch using C, Flex, and Bison. The project explores programming language design and implementation through lexical analysis, parsing, semantic processing, symbol tables, expression evaluation, and custom editor support.
+# SuperAnandLang
 
-The goal is to understand how programming languages work internally by building one from the ground up.
+A small experimental programming language built using **C, Flex, and Bison**.
 
-✨ Features
+SuperAnandLang is a personal language-design project focused on understanding how programming languages work internally — from lexical analysis and grammar design to parsing, semantic actions, and execution.
 
-Language Features
-
-- Output statements: Display values using "whatis".
-- Variable declarations: Declare integer variables using "believe".
-- Variable assignment: Assign and update existing variables.
-- Symbol table: Store, search, and manage variable values.
-- Arithmetic operations: Addition ("+"), subtraction ("-"), multiplication ("*"), and division ("/").
-- Operator precedence: Evaluate arithmetic expressions with parentheses.
-- Compound assignment: Support "+=", "-=", "*=", and "/=".
-- Increment and decrement: Postfix "++" and "--" operators.
-- String literals: Support double-quoted strings.
-- String concatenation: Combine string literals using "+", with basic integer-expression concatenation support.
-- Comments: Support single-line ("$$") and multiline ("$ ... $") comments.
-- Escape sequences: Handle "\n", "\t", "\"", and "\\".
-- Exit command: Terminate execution using "exit()".
-
-Error Handling
-
-- Undefined variable detection.
-- Duplicate variable declaration detection.
-- Division-by-zero detection.
-- Invalid character and syntax detection.
-
-🛠️ Technologies
-
-Technology| Purpose
-C| Core implementation and semantic actions
-Flex| Lexical analysis and tokenization
-Bison| Syntax analysis and grammar parsing
-GCC| Compilation
-GNU Make| Build automation
-TextMate Grammar| VS Code syntax highlighting
-
-📦 Installation
-
-Prerequisites
-
-Install the required tools:
-
-sudo apt update
-sudo apt install gcc flex bison make
-
-Clone the repository
-
-git clone https://github.com/SuperAnand67/SuperAnandLang.git
-cd SuperAnandLang
-
-Build
-
-make
-
-Run a program
-
-./superanandlang test.sal
-
-Interactive execution
-
-./superanandlang
-
-💻 SuperAnandLang Syntax
-
-1. Output Statements
-
-Use "whatis" to display values.
-
-whatis "Hello World!";
-whatis 293;
-whatis 220 - 10 + 100;
-whatis (20 + 10) * 2;
-
-2. Variable Declaration
-
-Use "believe" to declare integer variables.
-
-believe x = 10;
-believe y = 20;
-
-whatis x;
-whatis y;
-
-Variables can also be declared without an initial value. They are initialized to "0".
-
-believe result;
-result = 100;
-
-whatis result;
-
-3. Variable Assignment
-
-Existing variables can be reassigned.
-
-believe x = 10;
-
-x = 50;
-
-whatis x;
-
-4. Arithmetic Operations
-
-SuperAnandLang supports basic arithmetic operators and parentheses.
-
-whatis 10 + 20;
-whatis 50 - 10;
-whatis 5 * 6;
-whatis 100 / 5;
-
-whatis (10 + 5) * 2;
-
-5. String Concatenation
-
-Combine string literals using the "+" operator.
-
-whatis "Hello" + "World!";
-
-whatis "Super" + "Anand" + "Lang";
-
-Basic concatenation between strings and integer expressions is also supported:
-
-believe age = 20;
-
-whatis "Age: " + age;
-
-6. Compound Assignment
-
-Update variables using compound assignment operators.
-
-believe x = 10;
-
-x += 5;
-whatis x;
-
-x -= 2;
-whatis x;
-
-x *= 3;
-whatis x;
-
-x /= 2;
-whatis x;
-
-7. Increment and Decrement
-
-SuperAnandLang supports postfix increment and decrement.
-
-believe x = 10;
-
-x++;
-whatis x;
-
-x--;
-whatis x;
-
-8. Comments
-
-Use "$$" for single-line comments and "$ ... $" for multiline comments.
-
-$$ This is a single-line comment
-
-$ 
-    This is a
-    multiline comment
-$
-
-whatis "Hello World!";
-
-9. String Escape Sequences
-
-Supported escape sequences include:
-
-Escape sequence| Meaning
-"\n"| Newline
-"\t"| Tab
-"\""| Double quote
-"\\"| Backslash
-
-Example:
-
-whatis "Hello\nWorld!";
-whatis "Super\tAnand";
-whatis "This is a \"string\"";
-
-10. Exit Command
-
-Terminate the program using "exit()".
-
-whatis "Program started!";
-
-exit();
-
-whatis "This will not execute.";
-
-🧩 VS Code Language Support
-
-SuperAnandLang includes a dedicated VS Code language extension for ".sal" files.
-
-The extension uses TextMate grammar and VS Code language configuration.
-
-Features
-
-- Syntax highlighting for SuperAnandLang source files.
-- Keyword recognition ("whatis", "believe", "exit").
-- Integer and string literal highlighting.
-- Arithmetic and compound assignment operator highlighting.
-- Single-line and multiline comment highlighting.
-- Bracket matching and automatic pair insertion.
-- Comment toggling support.
-
-Extension Structure
-
-superanandlang-code/
-├── package.json
-├── language-configuration.json
-└── syntaxes/
-    └── superanandlang-code.tmLanguage.json
-
-Install the Extension
-
-The repository includes a packaged VS Code extension.
-
-Install it using:
-
-code --install-extension superanandlang-code-0.0.2.vsix
-
-Alternatively, open VS Code:
-
-1. Navigate to Extensions.
-2. Select Install from VSIX....
-3. Choose the packaged extension.
-4. Open a ".sal" file.
-
-⚙️ How It Works
-
-SuperAnandLang follows a traditional lexer-parser architecture.
-
-          Source Code (.sal)
-                  |
-                  v
-          Lexical Analysis
-                (Flex)
-                  |
-                  v
-               Tokens
-                  |
-                  v
-          Syntax Analysis
-               (Bison)
-                  |
-                  v
-          Semantic Actions
-                  |
-                  v
-           Symbol Table
-                  |
-                  v
-        Expression Evaluation
-                  |
-                  v
-               Output
-
-Project Structure
-
-SuperAnandLang/
-│
-├── parser.y
-├── lexical.l
-├── Makefile
-├── test.sal
-├── README.md
-│
-├── superanandlang-code/
-│   ├── package.json
-│   ├── language-configuration.json
-│   └── syntaxes/
-│       └── superanandlang-code.tmLanguage.json
-│
-└── LICENSE
-
-🔨 Build Commands
-
-The project uses GNU Make to automate the build process.
-
-Command| Description
-"make"| Build the interpreter
-"make run"| Build and execute "test.sal"
-"make run TEST_FILE=example.sal"| Execute a custom source file
-"make clean"| Remove generated files and executable
-
-🚧 Current Limitations
-
-SuperAnandLang is an ongoing experimental project.
-
-Some features are still under development or not implemented:
-
-- String variables and string assignment.
-- General-purpose mixed string and arithmetic concatenation.
-- Conditional statements.
-- Loops.
-- User-defined functions.
-- Arrays and collections.
-- Additional data types such as floating-point numbers and booleans.
-- Static type checking.
-- Abstract Syntax Tree (AST).
-- Intermediate representation.
-- Native machine-code generation.
-
-🔮 Future Improvements
-
-- Improve string concatenation and expression handling.
-- Introduce an Abstract Syntax Tree.
-- Improve memory management and error recovery.
-- Implement conditional statements and loops.
-- Introduce additional data types.
-- Implement functions and scoped variables.
-- Expand automated testing.
-- Explore intermediate representation and code generation.
-- Improve VS Code language support.
-
-👨‍💻 Author
-
-Anand
-
-Computer Science and Engineering Student
-
-- GitHub: "SuperAnand67" (https://github.com/SuperAnand67)
-- Project: "SuperAnandLang" (https://github.com/SuperAnand67/SuperAnandLang)
+The project is being developed incrementally, with an emphasis on learning compiler construction through practical implementation rather than simply studying its theory.
 
 ---
 
-"License: MIT" (https://img.shields.io/badge/License-MIT-yellow.svg)
+## Features
 
-SuperAnandLang — Building a programming language, one token at a time.
+### Language Syntax
+- `.sal` source file extension.
+- `whatis` statement for displaying output.
+- `believe` keyword for integer variable declarations.
+- `exit()` statement for terminating execution.
+- Single-line comments using `$$`.
+- Multiline comments using `$ ... $`.
+
+### Variables and Operations
+- Integer variable declarations.
+- Variable assignment and reassignment.
+- Symbol table for storing and retrieving variables.
+- Arithmetic operations:
+  - Addition (`+`)
+  - Subtraction (`-`)
+  - Multiplication (`*`)
+  - Division (`/`)
+- Parentheses and arithmetic precedence.
+- Compound assignment operators:
+  - `+=`
+  - `-=`
+  - `*=`
+  - `/=`
+- Postfix increment (`++`) and decrement (`--`).
+
+### Strings
+- String literals using double quotes.
+- String concatenation.
+- Concatenation of strings with integer expressions (currently limited).
+- Escape sequences:
+  - `\n` — Newline
+  - `\t` — Tab
+  - `\"` — Double quote
+  - `\\` — Backslash
+
+### Error Handling
+- Undefined variable detection.
+- Duplicate declaration detection.
+- Division-by-zero handling.
+- Invalid character detection.
+- Syntax error reporting.
+
+---
+
+## Example Program
+
+```sal
+$$ Variable declarations
+believe age = 19;
+believe score = 100;
+
+$$ Arithmetic operations
+believe result = (score + 50) * 2;
+
+$$ Compound assignments
+score += 25;
+age++;
+
+$$ Output
+whatis "SuperAnandLang";
+whatis "Age: " + age;
+whatis "Score: " + score;
+whatis "Result: " + result;
+
+exit();
+```
+
+---
+
+## Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| C | Implementation and semantic actions |
+| Flex | Lexical analysis |
+| Bison | Grammar definition and parsing |
+| Make | Build automation |
+| TextMate Grammar | VS Code syntax highlighting |
+
+---
+
+## Project Architecture
+
+```text
+         Source Code (.sal)
+                 |
+                 v
+          Lexical Analysis
+               (Flex)
+                 |
+                 v
+             Tokens
+                 |
+                 v
+          Syntax Analysis
+              (Bison)
+                 |
+                 v
+          Semantic Actions
+                 |
+                 v
+          Symbol Table
+                 |
+                 v
+             Execution
+```
+
+The lexer identifies tokens, the parser validates the grammar, and semantic actions perform operations and manage program execution.
+
+---
+
+## Installation and Usage
+
+### Requirements
+
+- GCC
+- Flex
+- Bison
+- Make
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/SuperAnand67/SuperAnandLang.git
+
+cd SuperAnandLang
+```
+
+### Build
+
+```bash
+make
+```
+
+### Run
+
+```bash
+make run
+```
+
+### Run a Specific File
+
+```bash
+make run TEST_FILE=example.sal
+```
+
+### Clean Generated Files
+
+```bash
+make clean
+```
+
+---
+
+## VS Code Support
+
+SuperAnandLang includes a VS Code language extension for `.sal` files.
+
+Current editor support includes:
+- Syntax highlighting.
+- Language configuration.
+- Comment support.
+- Bracket configuration.
+
+The extension can be packaged as a VSIX file and installed through VS Code's **Install from VSIX** option.
+
+---
+
+## Project Structure
+
+```text
+SuperAnandLang/
+|
+|-- lexical.l
+|-- parser.y
+|-- Makefile
+|-- test.sal
+|-- README.md
+|-- LICENSE
+|
+|-- vscode-extension/
+    |-- package.json
+    |-- syntaxes/
+    |-- language-configuration.json
+```
+
+*The exact directory structure may evolve as the project develops.*
+
+---
+
+## Current Limitations
+
+SuperAnandLang is still an experimental language implementation.
+
+Some features that are not yet implemented or fully developed:
+
+- String variables.
+- General mixed string and arithmetic concatenation.
+- Conditional statements.
+- Loops.
+- Functions.
+- Arrays and data structures.
+- Floating-point and Boolean types.
+- Abstract Syntax Tree (AST).
+- Intermediate Representation (IR).
+- Native machine-code generation.
+
+---
+
+## Learning Objectives
+
+This project is an opportunity to explore:
+
+- How lexical analyzers recognize programming language tokens.
+- How context-free grammars describe language syntax.
+- How Bison handles recursive grammar rules and parsing decisions.
+- How semantic actions evaluate expressions.
+- How symbol tables manage identifiers and values.
+- How memory allocation and ownership work in C.
+- How language syntax evolves as new features are introduced.
+
+---
+
+## Future Improvements
+
+- Improve grammar design and reduce parsing ambiguity.
+- Implement safer memory management.
+- Expand string operations and concatenation.
+- Introduce an Abstract Syntax Tree.
+- Separate parsing from execution.
+- Improve error reporting and recovery.
+- Add automated test cases.
+- Explore intermediate representation and code generation.
+
+---
+
+## Author
+
+**SuperAnand67**
+
+GitHub: https://github.com/SuperAnand67
+
+---
+
+## License
+
+This project is licensed under the MIT License.
