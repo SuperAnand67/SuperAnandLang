@@ -2,7 +2,8 @@
     "name": "superanandlang-code",
     "displayName": "SuperAnandLang Language Support",
     "description": "Syntax highlighting for the SuperAnandLang programming language",
-    "version": "0.0.2",
+    "version": "0.0.3",
+	"icon": "images/logo.png",
     "publisher": "superanand",
 	"license": "SEE LICENSE IN LICENSE",
     "engines": {
