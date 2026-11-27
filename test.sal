@@ -33,7 +33,20 @@ whatis z;
 z = 50;
 whatis z;
 
+whatis x + y + z + 1;   $ Output : 20 + 240 + 50 + 1 -> 311 $
+
 whatis "String " + "Concatination";
 
 whatis "My " + "New " + "Programming " + "Language !";
 
+whatis "x = " + x;   $ Output : 20 $
+x += 10;
+whatis "x = " + x;   $ Output : 30 $
+x -= 10;
+whatis "x = " + x;   $ Output : 20 $
+x *= 10;
+whatis "x = " + x;   $ Output : 200 $
+x /= 10;
+whatis "x = " + x;   $ Output : 20 $
+
+x /= 0; $ Error : Division by Zero $

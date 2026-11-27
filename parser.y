@@ -6,6 +6,8 @@
   int yylex(void);
   int findOrError(char *s, int i);
   int unaryOp(char *id, int k);
+  int assign(char *id, int val);
+  int uassign(char *id, char op, int val);
 
   extern char *yytext;
   extern int yylineno;
@@ -22,14 +24,18 @@
 %union {
   int num;
   char *str;
+  char op;
 }
 
 %token <num> NUMBER
 %token <str> STRING ID
-%token WHATIS BELIEVE INVALID INCREMENT DECREMENT
+%token WHATIS BELIEVE INVALID
+%token INCREMENT DECREMENT 
+%token <op> UASSIGN
 
 %type <num> expr term fact
 %type <str> string
+%type <op> assign
 
 %destructor { free($$); } <str>
 
@@ -43,12 +49,25 @@ prog:
   ;
 
 stmt:
+  output
+  | assign
+  | unary
+  ;
+
+output:
   WHATIS expr { printf("%d\n",$2); }
   | WHATIS string  { printf("%s\n",$2); free($2); }
-  | BELIEVE ID '=' expr { insert($2,$4); free($2); }
-  | BELIEVE ID  { insert($2,0); free($2); }
+  ;
+
+assign:
+  BELIEVE ID '=' expr { if(!assign($2,$4)) YYERROR; }
+  | BELIEVE ID { if(!assign($2,0)) YYERROR; }
   | ID '=' expr { if(!findOrError($1,$3)) YYERROR; }
-  | ID INCREMENT  { if(!unaryOp($1, 1)) YYERROR; }
+  | ID UASSIGN expr { if(!uassign($1, $2, $3)) YYERROR; }
+  ;
+
+unary:
+  ID INCREMENT  { if(!unaryOp($1, 1)) YYERROR; }
   | ID DECREMENT { if(!unaryOp($1, -1)) YYERROR; }
   ;
 
@@ -57,6 +76,12 @@ string:
      char *temp = realloc($1,strlen($1) + strlen($3) + 1); 
      $$ = strcat(temp, $3);
      free($3);
+  }
+  | STRING '+' expr {
+      char str[20];
+      snprintf(str, sizeof(str), "%d", $3);
+      char *temp = realloc($1,strlen($1) + strlen(str) + 1);
+      $$ = strcat(temp, str);
   }
   | STRING  { $$ = $1; }
   ;
@@ -127,6 +152,60 @@ int unaryOp(char *id, int k){
       free(id);
       return 0;
   }
+  return 1;
+}
+
+int assign(char *id, int val){
+
+  int index = search(id);
+
+  if(index == -1)
+    insert(id, val);
+  else{
+    char error[200];
+    sprintf(error, "'%s' already Declared - Remove 'believe' !",id);
+    yyerror(error);
+    free(id);
+    return 0;
+  }
+
+  return 1;
+
+}
+
+int uassign(char *id, char op, int val){
+  int i = search(id);
+
+  if(i == -1){
+    char error[200];
+    sprintf(error, "Undefined Variable '%s'",id);
+    yyerror(error);
+    free(id);
+    return 0;
+  }
+
+  switch(op){
+    case '+':
+      insert(id, values[i] + val);
+      break;
+    case '-':
+      insert(id, values[i] - val);
+      break;
+    case '*':
+      insert(id, values[i] * val);
+      break;
+    case '/':
+      if(val != 0)
+        insert(id, values[i] / val);
+      else{
+        yyerror("Division by Zero !");
+        free(id);
+        return 0;
+      }
+      break;
+  }
+
+  free(id);
   return 1;
 }
 

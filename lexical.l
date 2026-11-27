@@ -37,6 +37,8 @@ id [a-zA-Z][a-zA-Z0-9_]*
 "++"    { return INCREMENT; }
 "--"    { return DECREMENT; }
 
+[+\-*/]=    { yylval.op = yytext[0]; return UASSIGN; }
+
 [+\-*/();=]  { return *yytext; }
 
 "$" { BEGIN(COMMENT); }
