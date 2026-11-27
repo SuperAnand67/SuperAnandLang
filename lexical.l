@@ -27,6 +27,7 @@ id [a-zA-Z][a-zA-Z0-9_]*
 
 "whatis"  { return WHATIS; }
 "believe"   { return BELIEVE; }
+"exit()"  { printf("Thanks for Using SuperAnandLang !"); exit(0); }
 
 {number}   { yylval.num = atoi(yytext); return NUMBER; }
 {string}   { yylval.str = parse_string(yytext); return STRING; }
