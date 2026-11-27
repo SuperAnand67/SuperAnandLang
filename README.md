@@ -1,5 +1,11 @@
 # SuperAnandLang 🚀
 
+<div align="centre">
+
+<img src="assets/superanandlang-logo.png" width="750">
+
+</div>
+
 **SuperAnandLang** is an experimental programming language built from scratch using **C, Flex, and Bison**. The project explores programming language design through lexical analysis, parsing, symbol tables, expression evaluation, and custom editor support.
 
 ## ✨ Features
