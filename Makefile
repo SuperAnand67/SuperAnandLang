@@ -4,6 +4,10 @@ BISON = bison
 
 TARGET = superanandlang
 
+TEST_FILE ?= test.sal
+
+.SILENT:
+
 all: $(TARGET)
 
 parser.tab.c parser.tab.h: parser.y
@@ -14,11 +18,13 @@ lex.yy.c: lexical.l parser.tab.h
 
 $(TARGET): parser.tab.c lex.yy.c
 	$(CC) parser.tab.c lex.yy.c -o $(TARGET)
+	echo "Build Successfully !"
 
 run: $(TARGET)
-	./$(TARGET) test.sal
+	./$(TARGET) $(TEST_FILE)
 
 clean:
 	rm -f $(TARGET) parser.tab.c parser.tab.h lex.yy.c
+	echo "Cleaned Successfully !"
 
 .PHONY: all run clean
